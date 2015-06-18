@@ -10,8 +10,12 @@ app.use(express.static(path.join(__dirname, './client')));
 app.set('views', path.join(__dirname, './client/views'));
 app.set('view engine', 'ejs');
 
-require('./config/mongoose.js');
-require('./config/routes.js')(app);
+// require('./config/mongoose.js');
+// require('./config/routes.js')(app);
+
+app.get('/', function(req, res) {
+	res.render('index');
+})
 
 var server = app.listen(1232, function() {
   console.log('cool stuff on: 1232');
@@ -19,10 +23,11 @@ var server = app.listen(1232, function() {
 
 var io = require("socket.io").listen(server);
 
-socket.on("connection", function () {
+io.sockets.on("connection", function (socket) {
 	console.log("Socket connection has been established!");
 
 	socket.on("clickTest", function(data) {
+		console.log("in server socket");
 		console.log(data);
 	})
 })
