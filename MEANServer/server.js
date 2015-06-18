@@ -1,20 +1,28 @@
 var express = require('express');
 var path = require('path');
 var app = express();
+
 var bodyParser = require('body-parser');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
 
 app.use(express.static(path.join(__dirname, './client')));
+app.set('views', path.join(__dirname, './client/views'));
+app.set('view engine', 'ejs');
 
-//must be before routes.js!!
-app.use(bodyParser.json());
+require('./config/mongoose.js');
+require('./config/routes.js')(app);
 
-require('./server/config/mongoose.js');
-require('./server/config/routes.js')(app);
+var server = app.listen(1232, function() {
+  console.log('cool stuff on: 1232');
+});
 
-// app.get('/', function (req, res) {
-// 	res.render('index');
-// })
+var io = require("socket.io").listen(server);
 
-var server = app.listen(1232, function () {
-	console.log('Established connection to 1232.');
+socket.on("connection", function () {
+	console.log("Socket connection has been established!");
+
+	socket.on("clickTest", function(data) {
+		console.log(data);
+	})
 })
