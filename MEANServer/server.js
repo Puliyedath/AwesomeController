@@ -30,4 +30,32 @@ io.sockets.on("connection", function (socket) {
 		console.log("in server socket");
 		console.log(data);
 	})
+
+	socket.on("OPressed", function (data) {
+		console.log("server received 'O'");
+	})
+
+	socket.on("XPressed", function (data) {
+		console.log("server received 'X'");
+	})
+
+	socket.on("YPressed", function (data) {
+		console.log("server received 'Y'");
+	})
+
+	socket.on("down", function (data) {
+		console.log("server received 'DOWN'");
+	})
+
+	socket.on("up", function (data) {
+		console.log("server received 'UP'");
+	})
+
+	socket.on("right", function (data) {
+		console.log("server received 'RIGHT'");
+	})
+
+	socket.on("left", function (data) {
+		console.log("server received 'LEFT'");
+	})
 })

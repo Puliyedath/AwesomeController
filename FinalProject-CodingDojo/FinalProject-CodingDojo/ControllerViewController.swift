@@ -12,17 +12,43 @@ class ControllerViewController: UIViewController {
     
     let socket = SocketIOClient(socketURL: "192.168.1.62:1232")
     
-    @IBAction func actionButtonPressed(sender: UIButton) {
-        socket.emit("action")
+    @IBAction func XButtonPressed(sender: UIButton) {
+        println("X pressed")
+        socket.emit("XPressed")
+    }
+    
+    @IBAction func OButtonPressed(sender: UIButton) {
+        println("O pressed")
+        socket.emit("OPressed")
+    }
+    
+    @IBAction func YButtonPressed(sender: UIButton) {
+        println("Y pressed")
+        socket.emit("YPressed")
     }
     
     @IBAction func leftButtonPressed(sender: UIButton) {
+        println("left pressed")
         socket.emit("left")
     }
     
     @IBAction func rightButtonPressed(sender: UIButton) {
+        println("right pressed")
         socket.emit("right")
     }
+    
+    @IBAction func upButtonPressed(sender: UIButton) {
+        println("up pressed")
+        socket.emit("up")
+    }
+    
+    @IBAction func downButtonPressed(sender: UIButton) {
+        println("down pressed")
+        socket.emit("down")
+    }
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +63,7 @@ class ControllerViewController: UIViewController {
             println(self.socket)
         }
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
