@@ -7,13 +7,16 @@
   </script>
   <script type="text/javascript">
   $(document).ready(function() {
-  	var socket = io.connect();
+ //  	var socket = io.connect();
+ //  	var players = [];
+ //  	socket.on("moveFocusAndClick", function (data) {
+ //  		moveFocusAndClick(data);
+ //  	})
 
-  	socket.on("moveFocusAndClick", function (data) {
-  		moveFocusAndClick(data);
-  		// console.log(data)
-  		console.log("here");
-  	})
+ //  	socket.on("playersReceived", function (data) {
+	// 	console.log(data);
+	// 	players.push(data.name);
+	// })
 
   })
   </script>
@@ -33,34 +36,76 @@
 		  <input type="checkbox" id="a33" /><label for="a33">Bottom right</label>
 	  </div>
 
-  <p>State: </p>
+	  <p id="plist"></p>
+	  <p id="info"></p>	
+
   <script type="text/javascript">
+
+	var socket = io.connect();
+  	var players = [];
+  	socket.on("moveFocusAndClick", function (data) {
+  		moveFocusAndClick(data);
+  	})
+
+  	socket.on("playersReceived", function (data) {
+		console.log(data);
+		players.push(data.name);
+		currentPlayer = players[0]
+		document.getElementById('plist').innerHTML = currentPlayer + "'s turn" ;
+	})
+
   var checkboxes = document.getElementsByTagName('input');
   var squares = ["a11", "a12", "a13", "a21", "a22", "a23", "a31", "a32", "a33"];
   
   var board = document.getElementById('board');
   var square  = document.getElementById(squares[0]);
   var index = 0 ;
-  var currentPlayer = 'X';
-  var players = ['X', 'O'];
+  var currentPlayer;// = players[0];
+  // console.log(players)
+  // var players = ['X', 'O'];
 
   function getNextPlayer(){
-	  if (currentPlayer === 'X'){
-		  currentPlayer = 'O';
+	  if (currentPlayer === players[0]){
+		  currentPlayer = players[1];
 	  }else{
-		  currentPlayer = 'X';
+		  currentPlayer = players[0];
 	  }
+	  document.getElementById('plist').innerHTML = currentPlayer + "'s turn" ;
+	  console.log(currentPlayer);
   }
   
-  square.focus();
+square.focus();
 
-  for(var i=0; i<checkboxes.length; i++) {
-    checkboxes[i].indeterminate = true;
-  }
 
+
+
+function resetGame() {
+	  // console.log(currentPlayer);
+	for(var i=0; i<checkboxes.length; i++) {
+    	checkboxes[i].indeterminate = true;
+    	checkboxes[i].checked = undefined;
+  	}	
+  	// var board = document.getElementById('board');
+  	document.getElementById('info').innerHTML = "";
+  	square.focus();
+}
+
+resetGame();
   
   function moveFocusAndClick(event){
-	  console.log(event);
+	  console.log(event.playerName);
+
+
+
+	  if (players.length < 2) {
+	  	console.log("not enough players");
+	  	return
+	  }
+
+	  if (currentPlayer !== event.playerName) {
+	  	return
+	  }
+
 	  if (event.keyCode === 40){
 		  getCellBelow();
 	  }else if (event.keyCode === 38){
@@ -70,22 +115,24 @@
 	  }else if(event.keyCode === 39){
 		  getRightCell();
 	  }else if(event.keyCode === 13){
-		  if(square.checked){
+		  if(!(square.indeterminate)) {
 			  return;
 		  }
-		  if(currentPlayer === 'O'){
+		  if(currentPlayer === players[1]){
+		  	console.log("im p1");
 			  square.click();
-			  square.click();
+			  // square.click();
 			  square.checked = false;
 		  }else{
 			  square.click();
 			  square.checked = true;
 		  }
-		  // if(currentPlayer === 'X'){
+		  if (currentPlayer === players[0]) {
 			  checkStatus();
-		  // }else{
-			 //  checkStatusUnchecked();
-		  // }
+		  } else {
+			  checkStatusUnchecked();
+		  }
+		  
 		  getNextPlayer();
 		  return
 	  }else{
@@ -95,6 +142,26 @@
 
   }
 
+  function checkTie() {
+  	console.log("tiecheck");
+  	for(var i=0; i<checkboxes.length; i++) {
+    	if (checkboxes[i].indeterminate) {
+    		return 
+    	}    	
+  	}	
+  	document.getElementById('info').innerHTML = "It's a tie!";
+  	setTimeout(resetGame, 3000);
+  }
+
+  function winMessage() {
+		console.log("Player " + currentPlayer + " wins");		
+		// document.getElementById('plist').innerHTML = "Player" + currentPlayer + "wins";
+		// setTimeout(location.reload(true), 3000);
+		console.log("resetting");
+		document.getElementById('info').innerHTML = "Player " + currentPlayer + " wins";
+		setTimeout(resetGame, 3000);				
+		return
+  }
 
   function checkStatus(){
 	  var square_a11 = document.getElementById('a11');
@@ -107,36 +174,40 @@
 	  var square_a23 = document.getElementById('a23');
 	  var square_a33 = document.getElementById('a33');
 	  
-	  if (square_a11.checked && square_a21.checked && square_a31.checked){
-		  console.log("Player" + currentPlayer + "wins");
+	  if (square_a11.checked && square_a21.checked && square_a31.checked){winMessage();
 	  }
 
 	  if (square_a11.checked && square_a12.checked && square_a13.checked){
-		  console.log("Player" + currentPlayer + "wins");
+		  winMessage();
+	  }
+
+	  if (square_a21.checked && square_a22.checked && square_a23.checked){
+		  winMessage();
+	  }
+
+	  if (square_a31.checked && square_a32.checked && square_a33.checked){
+		  winMessage();
 	  }
 
 	  if (square_a12.checked && square_a32.checked && square_a22.checked){
-		  console.log("Player" + currentPlayer + "wins");
+		  winMessage();
 	  }
 
 	  if (square_a13.checked && square_a23.checked && square_a33.checked){
-		  console.log("Player" + currentPlayer + "wins");
-	  }
-
-	  if (square_a13.checked && square_a23.checked && square_a33.checked){
-		  console.log("Player" + currentPlayer + "wins");
+		  winMessage();
 	  }
 
 	  if (square_a11.checked && square_a22.checked && square_a33.checked){
-		  console.log("Player" + currentPlayer + "wins");
+		  winMessage();
 	  }
 
 	  if (square_a13.checked && square_a22.checked && square_a31.checked){
-		  console.log("Player" + currentPlayer + "wins");
+		  winMessage();
 	  }
 	  
-	  
+	  checkTie();
   }
+  
   function checkStatusUnchecked(){
 	  var square_a11 = document.getElementById('a11');
 	  var square_a21 = document.getElementById('a21');
@@ -147,36 +218,50 @@
 	  var square_a13 = document.getElementById('a13');
 	  var square_a23 = document.getElementById('a23');
 	  var square_a33 = document.getElementById('a33');
+
+	  var a11Unchecked = !square_a11.checked && !square_a11.indeterminate;
+	  var a21Unchecked = !square_a21.checked && !square_a21.indeterminate;
+	  var a31Unchecked = !square_a31.checked && !square_a31.indeterminate;
+	  var a12Unchecked = !square_a12.checked && !square_a12.indeterminate;
+	  var a22Unchecked = !square_a22.checked && !square_a22.indeterminate;
+	  var a32Unchecked = !square_a32.checked && !square_a32.indeterminate;
+	  var a13Unchecked = !square_a13.checked && !square_a13.indeterminate;
+	  var a23Unchecked = !square_a23.checked && !square_a23.indeterminate;
+	  var a33Unchecked = !square_a33.checked && !square_a33.indeterminate;
 	  
-	  if (!(square_a11.checked ||  square_a21.checked || square_a31.checked)){
-		  console.log("Player" + currentPlayer + "wins");
+	  if (a11Unchecked &&  a21Unchecked && a31Unchecked){
+		  winMessage();
 	  }
 
-	  if (!(square_a11.checked || square_a12.checked ||  square_a13.checked)){
-		  console.log("Player" + currentPlayer + "wins");
+	  if (a12Unchecked &&  a22Unchecked && a32Unchecked){
+		  winMessage();
 	  }
 
-	  if (!(square_a12.checked || square_a32.checked || square_a22.checked)){
-		  console.log("Player" + currentPlayer + "wins");
+	  if (a13Unchecked && a23Unchecked && a33Unchecked){
+		   winMessage();
 	  }
 
-	  if (!(square_a13.checked || square_a23.checked || square_a33.checked)){
-		  console.log("Player" + currentPlayer + "wins");
+	  if (a11Unchecked &&  a12Unchecked && a13Unchecked){
+		  winMessage();
 	  }
 
-	  if (!(square_a13.checked || square_a23.checked || square_a33.checked)){
-		  console.log("Player" + currentPlayer + "wins");
+	  if (a21Unchecked &&  a22Unchecked && a23Unchecked){
+		  winMessage();
 	  }
 
-	  if (!(square_a11.checked ||  square_a22.checked || square_a33.checked)){
-		  console.log("Player" + currentPlayer + "wins");
+	  if (a31Unchecked &&  a32Unchecked && a33Unchecked){
+		  winMessage();
 	  }
 
-	  if (!(square_a13.checked || square_a22.checked || square_a31.checked)){
-		  console.log("Player" + currentPlayer + "wins");
+	  if (a11Unchecked && a22Unchecked && a33Unchecked){
+		  winMessage();
 	  }
-	  
-	  
+
+	  if (a13Unchecked && a22Unchecked && a31Unchecked){
+		  winMessage();
+	  }
+	  checkTie();
+
   }
 
   function getLeftCell(){

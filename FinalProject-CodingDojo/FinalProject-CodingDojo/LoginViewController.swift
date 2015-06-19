@@ -43,7 +43,8 @@ class LoginViewController: UIViewController {
         
         socket.on("connect") { data, ack in
             println("iOS::WE ARE USING SOCKETS!")
-//            println(self.socket)
+//            self.socket.emit("hello")
+            
         }
     }
 

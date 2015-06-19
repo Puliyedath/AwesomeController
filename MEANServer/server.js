@@ -24,22 +24,13 @@ var server = app.listen(1232, function() {
 var io = require("socket.io").listen(server);
 
 io.sockets.on("connection", function (socket) {
-
-	console.log("a socket connection has been established");
+	console.log("Socket connection has been established!");
 
 	socket.on("userName", function (data) {
+
 		console.log("user '"+data.userName+"' is connected on "+socket.id);
         socket['userName'] = data.userName;
-        io.emit("systemLog", {"message": "user '"+data.userName+"' is now logged in"})
-	})
-
-	socket.on("newChatMessage", function (data) {
-		console.log("["+socket.userName+"] sent chat: "+data.message);
-	})
-
-	socket.on("clickTest", function(data) {
-		console.log("in server socket");
-		console.log(data);
+        socket.broadcast.emit("playersReceived", {"name": data.userName});
 	})
 
 	socket.on("OPressed", function (data) {
@@ -56,26 +47,26 @@ io.sockets.on("connection", function (socket) {
 
 	socket.on("YPressed", function (data) {
 		console.log("["+socket.userName+"] received 'Y'");
-		socket.broadcast.emit("moveFocusAndClick", {"keyCode": 13})
+		socket.broadcast.emit("moveFocusAndClick", {"keyCode": 13, "playerName": socket.userName})
 	})
 
 	socket.on("down", function (data) {
 		console.log("["+socket.userName+"] received 'DOWN'");
-		socket.broadcast.emit("moveFocusAndClick", {"keyCode": 40})
+		socket.broadcast.emit("moveFocusAndClick", {"keyCode": 40, "playerName": socket.userName})
 	})
 
 	socket.on("up", function (data) {
 		console.log("["+socket.userName+"] received 'UP'");
-		socket.broadcast.emit("moveFocusAndClick", {"keyCode": 38})
+		socket.broadcast.emit("moveFocusAndClick", {"keyCode": 38, "playerName": socket.userName})
 	})
 
 	socket.on("right", function (data) {
 		console.log("["+socket.userName+"] received 'RIGHT'");
-		socket.broadcast.emit("moveFocusAndClick", {"keyCode": 39})
+		socket.broadcast.emit("moveFocusAndClick", {"keyCode": 39, "playerName": socket.userName})
 	})
 
 	socket.on("left", function (data) {
 		console.log("["+socket.userName+"] received 'LEFT'");
-		socket.broadcast.emit("moveFocusAndClick", {"keyCode": 37})
+		socket.broadcast.emit("moveFocusAndClick", {"keyCode": 37, "playerName": socket.userName})
 	})
 })

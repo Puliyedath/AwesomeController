@@ -47,7 +47,7 @@ input:not(:checked) + label:before {
 }
 
 input:indeterminate + label:before {
-    content: 'I';
+    content: '';
 }
 
 p {
@@ -57,7 +57,7 @@ p {
 }
 
 p:after {
-    content: 'Tie';
+
     font-weight:bold;
 }
 
