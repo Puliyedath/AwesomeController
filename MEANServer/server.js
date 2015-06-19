@@ -24,7 +24,8 @@ var server = app.listen(1232, function() {
 var io = require("socket.io").listen(server);
 
 io.sockets.on("connection", function (socket) {
-	console.log("Socket connection has been established!");
+
+	console.log("a socket connection has been established");
 
 	socket.on("userName", function (data) {
 		console.log("user '"+data.userName+"' is connected on "+socket.id);

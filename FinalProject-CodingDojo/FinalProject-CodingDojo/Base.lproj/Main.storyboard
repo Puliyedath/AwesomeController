@@ -30,7 +30,7 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0ch-OK-S89">
                                 <rect key="frame" x="277" y="136" width="46" height="30"/>
-                                <state key="normal" title="Login!">
+                                <state key="normal" title="Login">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -206,6 +206,15 @@
                                     <action selector="sendButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bk1-SG-0eE"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LTM-An-75v">
+                                <rect key="frame" x="538" y="550" width="49" height="30"/>
+                                <state key="normal" title="Logout">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Had-YK-QsC" kind="show" id="IJL-em-oQp"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wT8-L1-ieV">
                                 <rect key="frame" x="434" y="345" width="150" height="75"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -229,6 +238,7 @@
                             <constraint firstItem="t3E-9L-MXP" firstAttribute="top" secondItem="pDM-h7-w44" secondAttribute="bottom" constant="8" id="BEs-fr-bY7"/>
                             <constraint firstItem="t3E-9L-MXP" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="BqW-pH-0kv"/>
                             <constraint firstItem="So6-bU-psg" firstAttribute="height" secondItem="fkf-8x-jtv" secondAttribute="height" id="Buv-vC-xeP"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="LTM-An-75v" secondAttribute="bottom" constant="20" id="Cwh-9p-snQ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="l5h-a1-nA0" secondAttribute="trailing" constant="9" id="Dxy-Jr-SG1"/>
                             <constraint firstItem="t3E-9L-MXP" firstAttribute="width" secondItem="Ea7-WJ-cST" secondAttribute="width" id="EwR-Cv-sQb"/>
                             <constraint firstItem="GGb-nz-Vh2" firstAttribute="width" secondItem="im1-xS-1Yk" secondAttribute="width" id="Fm6-8W-K4u"/>
@@ -250,6 +260,7 @@
                             <constraint firstItem="wT8-L1-ieV" firstAttribute="top" secondItem="So6-bU-psg" secondAttribute="bottom" constant="8" id="a3Y-4f-NqJ"/>
                             <constraint firstItem="pDM-h7-w44" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="1" id="aW2-vo-0pJ"/>
                             <constraint firstItem="l5h-a1-nA0" firstAttribute="leading" secondItem="7el-eZ-7AL" secondAttribute="trailing" constant="8" id="bcp-gF-B7T"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="LTM-An-75v" secondAttribute="trailing" constant="-3" id="cWn-hG-X1u"/>
                             <constraint firstItem="wT8-L1-ieV" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="dE5-mf-8nv"/>
                             <constraint firstItem="p1Q-og-Lvq" firstAttribute="top" secondItem="im1-xS-1Yk" secondAttribute="bottom" constant="8" id="ddS-w5-GV0"/>
                             <constraint firstItem="7el-eZ-7AL" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="-5" id="f9G-Q8-Wzy"/>

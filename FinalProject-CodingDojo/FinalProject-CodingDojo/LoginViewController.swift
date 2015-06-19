@@ -23,8 +23,8 @@ class LoginViewController: UIViewController {
     
 
     
-//        let socket = SocketIOClient(socketURL: "192.168.1.62:1232") // JV
-    let socket = SocketIOClient(socketURL: "192.168.1.7:1232") // ROD
+        let socket = SocketIOClient(socketURL: "192.168.1.62:1232") // JV
+//    let socket = SocketIOClient(socketURL: "192.168.1.7:1232") // ROD
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         var DestViewController: ControllerViewController = segue.destinationViewController as! ControllerViewController

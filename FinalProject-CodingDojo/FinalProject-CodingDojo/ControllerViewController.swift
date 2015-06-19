@@ -10,8 +10,8 @@ import UIKit
 
 class ControllerViewController: UIViewController, UITextFieldDelegate {
     
-//    let socket = SocketIOClient(socketURL: "192.168.1.62:1232") // JV
-    let socket = SocketIOClient(socketURL: "192.168.1.7:1232") // ROD
+    let socket = SocketIOClient(socketURL: "192.168.1.62:1232") // JV
+//    let socket = SocketIOClient(socketURL: "192.168.1.7:1232") // ROD
 
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var systemLogLabel: UILabel!
@@ -48,7 +48,6 @@ class ControllerViewController: UIViewController, UITextFieldDelegate {
     @IBAction func UpButtonRepeat(sender: UIButton) {
         println("UP: touch down repeat event!!!")
     }
-    
     
     @IBAction func OButtonPressed(sender: UIButton) {
         println("O pressed")
