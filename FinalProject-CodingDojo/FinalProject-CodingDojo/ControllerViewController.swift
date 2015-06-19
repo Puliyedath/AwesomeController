@@ -18,17 +18,20 @@ class ControllerViewController: UIViewController {
     
 
     
-    @IBAction func XButtonPressed(sender: UIButton) {
-//            println(sender.state)
-//        if sender.state == UIGestureRecognizerState.Began {
-//            pritnln("long gesture detected on X")
-//        }
-        println("X pressed")
-        socket.emit("XPressed")
+    @IBAction func XButtonTouchUpOutside(sender: UIButton) {
+        println("X released up outside of button")
+        socket.emit("XPressedUp")
+    }
+    @IBAction func XButtonUp(sender: UIButton) {
+        println("X: up released inside of button")
+        socket.emit("XPressedUp")
+    }
+    @IBAction func XButtonDown(sender: UIButton) {
+        println("X: down pressed")
     }
     
     @IBAction func UpButtonRepeat(sender: UIButton) {
-        
+        println("UP: touch down repeat event!!!")
     }
     
     

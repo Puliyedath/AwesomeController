@@ -40,8 +40,12 @@ io.sockets.on("connection", function (socket) {
 		console.log("["+socket.userName+"] received 'O'");
 	})
 
-	socket.on("XPressed", function (data) {
-		console.log("["+socket.userName+"] received 'X'");
+	socket.on("XPressedUp", function (data) {
+		console.log("["+socket.userName+"] received 'X Up!'");
+	})
+
+	socket.on("XPressedDown", function (data) {
+		console.log("["+socket.userName+"] received 'X Down!'");
 	})
 
 	socket.on("YPressed", function (data) {
