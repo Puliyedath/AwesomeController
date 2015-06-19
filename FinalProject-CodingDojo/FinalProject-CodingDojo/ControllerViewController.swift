@@ -74,8 +74,8 @@ class ControllerViewController: UIViewController {
         }
         
         socket.on("connect") { data, ack in
-            println("iOS::WE ARE USING SOCKETS!")
-            println(self.socket)
+//            println("iOS::WE ARE USING SOCKETS!")
+//            println(self.socket)
         }
 
     }

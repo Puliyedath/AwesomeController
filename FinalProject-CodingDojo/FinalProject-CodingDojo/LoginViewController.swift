@@ -28,7 +28,7 @@ class LoginViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         var DestViewController: ControllerViewController = segue.destinationViewController as! ControllerViewController
 
-        println(nameTextField)
+        println("user '\(nameTextField.text)' logged in")
         DestViewController.labelText = nameTextField!.text
     }
     
@@ -42,7 +42,7 @@ class LoginViewController: UIViewController {
         
         socket.on("connect") { data, ack in
             println("iOS::WE ARE USING SOCKETS!")
-            println(self.socket)
+//            println(self.socket)
         }
     }
 
