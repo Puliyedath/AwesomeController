@@ -30,6 +30,7 @@ io.sockets.on("connection", function (socket) {
 	socket.on("userName", function (data) {
 		console.log("user '"+data.userName+"' is connected on "+socket.id);
         socket['userName'] = data.userName;
+        io.emit("systemLog", {"message": "user '"+data.userName+"' is now logged in"})
 	})
 
 	socket.on("newChatMessage", function (data) {

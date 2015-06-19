@@ -95,9 +95,35 @@ class ControllerViewController: UIViewController, UITextFieldDelegate {
         
         socket.on("connect") { data, ack in
             self.socket.emit("userName", ["userName": self.labelText])
+
+        }
+        
+        
+        socket.on("systemLog") { data, ack in
+//            self.socket.emit("userName", ["userName": self.labelText])
+            println(data)
+ 
+//            if let msgJSON = data as? NSDictionary {
+//                if let msg = msgJSON["message"] as? NSString {
+//                    println(msg)
+//                }
+//            }
+            
+//            var msg_str = ""
+//            msg_str = String(data["message"])
+//            println(msg_str)
+            
+//            self.systemLogLabel.text = data.message!
 //            println("iOS::WE ARE USING SOCKETS!")
 //            println(self.socket)
         }
+        
+//        socket.on(<#event: String#>, callback: <#NormalCallback##(NSArray?, AckEmitter?) -> Void#>)
+//        socket.on(event:"systemLog",{ data, ack in
+//            println("received systemLog message")
+//            println(data)
+////            self.systemLogLabel.text = data.message
+//        }
 
     }
     
