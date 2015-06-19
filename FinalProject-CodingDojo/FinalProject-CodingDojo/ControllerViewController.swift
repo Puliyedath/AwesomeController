@@ -10,7 +10,9 @@ import UIKit
 
 class ControllerViewController: UIViewController {
     
-    let socket = SocketIOClient(socketURL: "192.168.1.62:1232")
+    let socket = SocketIOClient(socketURL: "192.168.1.62:1232") // JV
+//    let socket = SocketIOClient(socketURL: "192.168.1.7:1232") // ROD
+
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var systemLogLabel: UILabel!
     
@@ -74,6 +76,7 @@ class ControllerViewController: UIViewController {
         }
         
         socket.on("connect") { data, ack in
+            self.socket.emit("userName", ["userName": self.labelText])
 //            println("iOS::WE ARE USING SOCKETS!")
 //            println(self.socket)
         }

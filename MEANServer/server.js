@@ -26,36 +26,41 @@ var io = require("socket.io").listen(server);
 io.sockets.on("connection", function (socket) {
 	console.log("Socket connection has been established!");
 
+	socket.on("userName", function (data) {
+		console.log("user '"+data.userName+"' is connected on "+socket.id);
+        socket['userName'] = data.userName;
+	})
+
 	socket.on("clickTest", function(data) {
 		console.log("in server socket");
 		console.log(data);
 	})
 
 	socket.on("OPressed", function (data) {
-		console.log("server received 'O'");
+		console.log("["+socket.userName+"] received 'O'");
 	})
 
 	socket.on("XPressed", function (data) {
-		console.log("server received 'X'");
+		console.log("["+socket.userName+"] received 'X'");
 	})
 
 	socket.on("YPressed", function (data) {
-		console.log("server received 'Y'");
+		console.log("["+socket.userName+"] received 'Y'");
 	})
 
 	socket.on("down", function (data) {
-		console.log("server received 'DOWN'");
+		console.log("["+socket.userName+"] received 'DOWN'");
 	})
 
 	socket.on("up", function (data) {
-		console.log("server received 'UP'");
+		console.log("["+socket.userName+"] received 'UP'");
 	})
 
 	socket.on("right", function (data) {
-		console.log("server received 'RIGHT'");
+		console.log("["+socket.userName+"] received 'RIGHT'");
 	})
 
 	socket.on("left", function (data) {
-		console.log("server received 'LEFT'");
+		console.log("["+socket.userName+"] received 'LEFT'");
 	})
 })
