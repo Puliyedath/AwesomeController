@@ -3,7 +3,7 @@ var path = require('path');
 var app = express();
 
 var bodyParser = require('body-parser');
-app.use(bodyParser.json());
+// app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 
 app.use(express.static(path.join(__dirname, './client')));
@@ -50,21 +50,26 @@ io.sockets.on("connection", function (socket) {
 
 	socket.on("YPressed", function (data) {
 		console.log("["+socket.userName+"] received 'Y'");
+		socket.broadcast.emit("moveFocusAndClick", {"keyCode": 13})
 	})
 
 	socket.on("down", function (data) {
 		console.log("["+socket.userName+"] received 'DOWN'");
+		socket.broadcast.emit("moveFocusAndClick", {"keyCode": 40})
 	})
 
 	socket.on("up", function (data) {
 		console.log("["+socket.userName+"] received 'UP'");
+		socket.broadcast.emit("moveFocusAndClick", {"keyCode": 38})
 	})
 
 	socket.on("right", function (data) {
 		console.log("["+socket.userName+"] received 'RIGHT'");
+		socket.broadcast.emit("moveFocusAndClick", {"keyCode": 39})
 	})
 
 	socket.on("left", function (data) {
 		console.log("["+socket.userName+"] received 'LEFT'");
+		socket.broadcast.emit("moveFocusAndClick", {"keyCode": 37})
 	})
 })

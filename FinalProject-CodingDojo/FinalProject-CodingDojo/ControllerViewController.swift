@@ -26,8 +26,10 @@ class ControllerViewController: UIViewController {
         println("X: up released inside of button")
         socket.emit("XPressedUp")
     }
+
     @IBAction func XButtonDown(sender: UIButton) {
         println("X: down pressed")
+        socket.emit("XPressedDown")
     }
     
     @IBAction func UpButtonRepeat(sender: UIButton) {
