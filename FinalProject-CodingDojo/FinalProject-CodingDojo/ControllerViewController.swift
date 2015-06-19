@@ -8,15 +8,28 @@
 
 import UIKit
 
-class ControllerViewController: UIViewController {
+class ControllerViewController: UIViewController, UITextFieldDelegate {
     
-    let socket = SocketIOClient(socketURL: "192.168.1.62:1232") // JV
-//    let socket = SocketIOClient(socketURL: "192.168.1.7:1232") // ROD
+//    let socket = SocketIOClient(socketURL: "192.168.1.62:1232") // JV
+    let socket = SocketIOClient(socketURL: "192.168.1.7:1232") // ROD
 
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var systemLogLabel: UILabel!
+    @IBOutlet weak var chatField: UITextField!
     
-
+    @IBAction func sendButtonPressed(sender: UIButton) {
+        println("'\(chatField.text)'")
+        self.socket.emit("newChatMessage", ["message":self.chatField.text])
+        self.chatField.text = ""
+        self.chatField.resignFirstResponder()
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.socket.emit("newChatMessage", ["message":self.chatField.text])
+        self.chatField.text = ""
+        textField.resignFirstResponder()
+        return true
+    }
     
     @IBAction func XButtonTouchUpOutside(sender: UIButton) {
         println("X released up outside of button")
@@ -73,6 +86,7 @@ class ControllerViewController: UIViewController {
         super.viewDidLoad()
         
         userNameLabel.text = labelText
+        chatField.delegate = self
         
         socket.connect()
         

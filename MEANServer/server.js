@@ -31,6 +31,10 @@ io.sockets.on("connection", function (socket) {
         socket['userName'] = data.userName;
 	})
 
+	socket.on("newChatMessage", function (data) {
+		console.log("["+socket.userName+"] sent chat: "+data.message);
+	})
+
 	socket.on("clickTest", function(data) {
 		console.log("in server socket");
 		console.log(data);
