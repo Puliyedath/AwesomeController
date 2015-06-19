@@ -26,6 +26,8 @@
 		671E04151B33521E0080C095 /* SocketTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671E04081B33521E0080C095 /* SocketTypes.swift */; };
 		671E04161B33521E0080C095 /* SwiftRegex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671E04091B33521E0080C095 /* SwiftRegex.swift */; };
 		671E04171B33521E0080C095 /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671E040A1B33521E0080C095 /* WebSocket.swift */; };
+		671E04191B337C100080C095 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671E04181B337C100080C095 /* LoginViewController.swift */; };
+		671E041B1B3389E80080C095 /* mainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671E041A1B3389E80080C095 /* mainModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +64,8 @@
 		671E04081B33521E0080C095 /* SocketTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SocketTypes.swift; path = "../../SocketIOClientSwift/Socket.IO-Client-Swift/SocketIOClientSwift/SocketTypes.swift"; sourceTree = "<group>"; };
 		671E04091B33521E0080C095 /* SwiftRegex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftRegex.swift; path = "../../SocketIOClientSwift/Socket.IO-Client-Swift/SocketIOClientSwift/SwiftRegex.swift"; sourceTree = "<group>"; };
 		671E040A1B33521E0080C095 /* WebSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebSocket.swift; path = "../../SocketIOClientSwift/Socket.IO-Client-Swift/SocketIOClientSwift/WebSocket.swift"; sourceTree = "<group>"; };
+		671E04181B337C100080C095 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		671E041A1B3389E80080C095 /* mainModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mainModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,7 +129,9 @@
 			isa = PBXGroup;
 			children = (
 				671E03DE1B332FFD0080C095 /* AppDelegate.swift */,
+				671E041A1B3389E80080C095 /* mainModel.swift */,
 				671E03E01B332FFD0080C095 /* ControllerViewController.swift */,
+				671E04181B337C100080C095 /* LoginViewController.swift */,
 				671E03E21B332FFD0080C095 /* Main.storyboard */,
 				671E03E51B332FFD0080C095 /* Images.xcassets */,
 				671E03E71B332FFD0080C095 /* LaunchScreen.xib */,
@@ -271,6 +277,8 @@
 				671E04121B33521E0080C095 /* SocketLogger.swift in Sources */,
 				671E04101B33521E0080C095 /* SocketFixUTF8.swift in Sources */,
 				671E04151B33521E0080C095 /* SocketTypes.swift in Sources */,
+				671E041B1B3389E80080C095 /* mainModel.swift in Sources */,
+				671E04191B337C100080C095 /* LoginViewController.swift in Sources */,
 				671E040C1B33521E0080C095 /* SocketAnyEvent.swift in Sources */,
 				671E03DF1B332FFD0080C095 /* AppDelegate.swift in Sources */,
 				671E04141B33521E0080C095 /* SocketParser.swift in Sources */,

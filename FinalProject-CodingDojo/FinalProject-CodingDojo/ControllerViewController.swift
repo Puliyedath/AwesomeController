@@ -11,11 +11,24 @@ import UIKit
 class ControllerViewController: UIViewController {
     
     let socket = SocketIOClient(socketURL: "192.168.1.62:1232")
+    @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var systemLogLabel: UILabel!
+    
+
     
     @IBAction func XButtonPressed(sender: UIButton) {
+//            println(sender.state)
+//        if sender.state == UIGestureRecognizerState.Began {
+//            pritnln("long gesture detected on X")
+//        }
         println("X pressed")
         socket.emit("XPressed")
     }
+    
+    @IBAction func UpButtonRepeat(sender: UIButton) {
+        
+    }
+    
     
     @IBAction func OButtonPressed(sender: UIButton) {
         println("O pressed")
@@ -47,11 +60,13 @@ class ControllerViewController: UIViewController {
         socket.emit("down")
     }
     
-    
-    
-    
+    var labelText = String()
+   
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        userNameLabel.text = labelText
+        
         socket.connect()
         
         socket.on("error") {data, ack in
@@ -62,6 +77,7 @@ class ControllerViewController: UIViewController {
             println("iOS::WE ARE USING SOCKETS!")
             println(self.socket)
         }
+
     }
     
     override func didReceiveMemoryWarning() {
