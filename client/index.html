@@ -1,0 +1,204 @@
+<!doctype html>
+<head>
+  <title>TicTacToe</title>
+  <link rel="stylesheet" href="index.css" type="text/css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  </script>
+  </head>
+  <body>
+	  <div onkeyup="moveFocusAndClick(event)" tabindex="0" id="board">
+		  <input  type="checkbox" id="a11" /><label for="a11">Top left</label>
+		  <input  type="checkbox" id="a12" /><label for="a12">Top center</label>
+		  <input  type="checkbox" id="a13" /><label for="a13">Top right</label>
+		  
+		  <input type="checkbox" id="a21" /><label for="a21">Middle left</label>
+		  <input type="checkbox" id="a22" /><label for="a22">Middle center</label>
+		  <input type="checkbox" id="a23" /><label for="a23">Middle right</label>
+
+		  <input type="checkbox" id="a31" /><label for="a31">Bottom left</label>
+		  <input type="checkbox" id="a32" /><label for="a32">Bottom center</label>
+		  <input type="checkbox" id="a33" /><label for="a33">Bottom right</label>
+	  </div>
+
+  <p>State: </p>
+  <script type="text/javascript">
+  var checkboxes = document.getElementsByTagName('input');
+  var squares = ["a11", "a12", "a13", "a21", "a22", "a23", "a31", "a32", "a33"];
+  
+  var board = document.getElementById('board');
+  var square  = document.getElementById(squares[0]);
+  var index = 0 ;
+  var currentPlayer = 'X';
+  var players = ['X', 'O'];
+
+  function getNextPlayer(){
+	  if (currentPlayer === 'X'){
+		  currentPlayer = 'O';
+	  }else{
+		  currentPlayer = 'X';
+	  }
+  }
+  
+  square.focus();
+
+  for(var i=0; i<checkboxes.length; i++) {
+    checkboxes[i].indeterminate = true;
+  }
+
+  
+  function moveFocusAndClick(event){
+	  
+	  if (event.keyCode === 40){
+		  getCellBelow();
+	  }else if (event.keyCode === 38){
+		  getCellAbove();
+	  }else if(event.keyCode === 37){
+		  getLeftCell();
+	  }else if(event.keyCode === 39){
+		  getRightCell();
+	  }else if(event.keyCode === 13){
+		  if(square.checked){
+			  return;
+		  }
+		  if(currentPlayer === 'O'){
+			  square.click();
+			  square.click();
+			  square.checked = false;
+		  }else{
+			  square.click();
+			  square.checked = true;
+		  }
+		  if(currentPlayer === 'X'){
+			  checkStatus();
+		  }else{
+			  checkStatusUnchecked();
+		  }
+		  getNextPlayer();
+		  return
+	  }else{
+		//do nothing 
+	  }
+	  square.focus();
+
+  }
+
+
+  function checkStatus(){
+	  var square_a11 = document.getElementById('a11');
+	  var square_a21 = document.getElementById('a21');
+	  var square_a31 = document.getElementById('a31');
+	  var square_a12 = document.getElementById('a12');
+	  var square_a22 = document.getElementById('a22');
+	  var square_a32 = document.getElementById('a32');
+	  var square_a13 = document.getElementById('a13');
+	  var square_a23 = document.getElementById('a23');
+	  var square_a33 = document.getElementById('a33');
+	  
+	  if (square_a11.checked && square_a21.checked && square_a31.checked){
+		  console.log("Player" + currentPlayer + "wins");
+	  }
+
+	  if (square_a11.checked && square_a12.checked && square_a13.checked){
+		  console.log("Player" + currentPlayer + "wins");
+	  }
+
+	  if (square_a12.checked && square_a32.checked && square_a22.checked){
+		  console.log("Player" + currentPlayer + "wins");
+	  }
+
+	  if (square_a13.checked && square_a23.checked && square_a33.checked){
+		  console.log("Player" + currentPlayer + "wins");
+	  }
+
+	  if (square_a13.checked && square_a23.checked && square_a33.checked){
+		  console.log("Player" + currentPlayer + "wins");
+	  }
+
+	  if (square_a11.checked && square_a22.checked && square_a33.checked){
+		  console.log("Player" + currentPlayer + "wins");
+	  }
+
+	  if (square_a13.checked && square_a22.checked && square_a31.checked){
+		  console.log("Player" + currentPlayer + "wins");
+	  }
+	  
+	  
+  }
+  function checkStatusUnchecked(){
+	  var square_a11 = document.getElementById('a11');
+	  var square_a21 = document.getElementById('a21');
+	  var square_a31 = document.getElementById('a31');
+	  var square_a12 = document.getElementById('a12');
+	  var square_a22 = document.getElementById('a22');
+	  var square_a32 = document.getElementById('a32');
+	  var square_a13 = document.getElementById('a13');
+	  var square_a23 = document.getElementById('a23');
+	  var square_a33 = document.getElementById('a33');
+	  
+	  if (!(square_a11.checked ||  square_a21.checked || square_a31.checked)){
+		  console.log("Player" + currentPlayer + "wins");
+	  }
+
+	  if (!(square_a11.checked || square_a12.checked ||  square_a13.checked)){
+		  console.log("Player" + currentPlayer + "wins");
+	  }
+
+	  if (!(square_a12.checked || square_a32.checked || square_a22.checked)){
+		  console.log("Player" + currentPlayer + "wins");
+	  }
+
+	  if (!(square_a13.checked || square_a23.checked || square_a33.checked)){
+		  console.log("Player" + currentPlayer + "wins");
+	  }
+
+	  if (!(square_a13.checked || square_a23.checked || square_a33.checked)){
+		  console.log("Player" + currentPlayer + "wins");
+	  }
+
+	  if (!(square_a11.checked ||  square_a22.checked || square_a33.checked)){
+		  console.log("Player" + currentPlayer + "wins");
+	  }
+
+	  if (!(square_a13.checked || square_a22.checked || square_a31.checked)){
+		  console.log("Player" + currentPlayer + "wins");
+	  }
+	  
+	  
+  }
+
+  function getLeftCell(){
+	  if (index === 0 || index === 3 || index === 6){
+		  return
+	  }
+	  square = document.getElementById(squares[--index]);
+  }
+
+  function getRightCell(){
+	  if( index === 2 || index === 5 || index === 8){
+		  return
+	  }
+	  square = document.getElementById(squares[++index]);
+  }
+
+  function getCellAbove(){
+	  if(index < 3){
+		  return
+	  }
+	  index = index - 3;
+	  square = document.getElementById(squares[index]);
+  }
+
+  function getCellBelow(){
+	  if( index > 5){
+		  return
+	  }
+	  index = index + 3;
+	  square = document.getElementById(squares[index]);
+  }
+
+  function getNextCell(){
+	  square = document.getElementById(squares[++index]);
+  }
+  </script>
+
+</body>

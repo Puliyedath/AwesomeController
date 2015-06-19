@@ -1,0 +1,86 @@
+#Board{
+    height: 300px;
+    width: 400px;
+    border: 1px solid black;
+    align-self: center;
+}
+
+input {
+    position:absolute;
+    clip: rect(0,0,0,0);
+}
+
+label {
+    display:block;
+    width:30px;
+    height:50px;
+    padding:10px 20px;
+    outline:1px solid #bbb;
+    background:white;
+    float:left;
+    color:transparent;
+    font-size:50px;
+    line-height:1;
+    overflow:hidden;
+}
+
+input:focus + label {
+    background:#ffd;
+}
+
+label:nth-of-type(3n + 1) {
+    clear:left
+}
+
+label:before {
+    color:black;
+}
+
+input:checked + label:before {
+    content: 'X';
+    color: green;
+}
+
+input:not(:checked) + label:before {
+    content: 'O';
+    color: blue;
+}
+
+input:indeterminate + label:before {
+    content: 'I';
+}
+
+p {
+    clear:both;
+    padding:10px 0;
+    font:150% sans-serif;
+}
+
+p:after {
+    content: 'Tie';
+    font-weight:bold;
+}
+
+input:indeterminate + label ~ p:after {
+    content: 'Still playing';
+}
+
+input:nth-of-type(3n+1):checked + label + input:checked + label + input:checked ~ p:after,
+#a11:checked ~ #a21:checked ~ #a31:checked ~ p:after,
+#a12:checked ~ #a22:checked ~ #a32:checked ~ p:after,
+#a13:checked ~ #a23:checked ~ #a33:checked ~ p:after,
+#a11:checked ~ #a22:checked ~ #a33:checked ~ p:after,
+#a13:checked ~ #a22:checked ~ #a31:checked ~ p:after {
+    content: 'X won';
+    color:green;
+}
+
+input:nth-of-type(3n+1):not(:checked):not(:indeterminate) + label + input:not(:checked):not(:indeterminate) + label + input:not(:checked):not(:indeterminate) ~ p:after,
+#a11:not(:checked):not(:indeterminate) ~ #a21:not(:checked):not(:indeterminate) ~ #a31:not(:checked):not(:indeterminate) ~ p:after,
+#a12:not(:checked):not(:indeterminate) ~ #a22:not(:checked):not(:indeterminate) ~ #a32:not(:checked):not(:indeterminate) ~ p:after,
+#a13:not(:checked):not(:indeterminate) ~ #a23:not(:checked):not(:indeterminate) ~ #a33:not(:checked):not(:indeterminate) ~ p:after,
+#a11:not(:checked):not(:indeterminate) ~ #a22:not(:checked):not(:indeterminate) ~ #a33:not(:checked):not(:indeterminate) ~ p:after,
+#a13:not(:checked):not(:indeterminate) ~ #a22:not(:checked):not(:indeterminate) ~ #a31:not(:checked):not(:indeterminate) ~ p:after{
+    content: 'O won';
+    color:blue;
+}
