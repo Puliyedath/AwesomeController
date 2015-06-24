@@ -33,6 +33,11 @@ io.sockets.on("connection", function (socket) {
         socket.broadcast.emit("playersReceived", {"name": data.userName});
 	})
 
+	socket.on("newChatMessage", function (data) {
+		console.log("["+socket.userName+"] sent chat: "+data.message);
+		socket.broadcast.emit("chatMsg", {"message": socket.userName+ ": "+data.message});
+	})
+
 	socket.on("OPressed", function (data) {
 		console.log("["+socket.userName+"] received 'O'");
 	})

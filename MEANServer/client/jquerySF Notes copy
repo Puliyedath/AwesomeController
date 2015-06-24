@@ -1,0 +1,68 @@
+// jQuerySF Notes:
+
+// Ember.js:
+// application.hbs file: 
+// will contain content that persists/is visible through  whole app
+
+// debugs can be run in the acceptance folder via “acceptance tests”
+
+// Angular2:
+// @mgonto - twitter
+// “flashy lights” guy
+// check out Auth0 inc. for authentication
+// http://auze.ro/ng2-jqsf
+
+
+// React.js 
+// JS library for immediate mode user interfaces
+// @floydophone - Pete
+// left Facebook and started smyte.com
+// "compile-to-js”
+// dom is slow, virtual dom is faster
+
+// Metero JS
+// Zoltan Olah
+// Command Line Tool, Atmosphere, Blaze, Livedata, Cordova Build
+// Meteor is a JavaScript Platform
+// At the heart of meteor lies "Tracker"
+//  - if you understand Tracker, you understand meteor
+
+//Sample meteor:
+var light = new ReactiveVar('green');
+Tracker.autorun(function() {
+	console.log("the light is", light.get());
+});
+
+light.set('amber');
+light.set('red');
+
+// Result: 
+"The light is green"
+"The light is amber"
+"The light is red"
+
+// code runs both on the server and client
+// use Tracker library to populate the DOM via websockets
+
+// Sandstorm.io
+// Jade Wang
+// deploy apps online quickly
+
+
+//Emily Stark 
+// - Google Chrome security team
+// "TLS"??
+//@estark37
+// Transport Layer Security - newer version of SSL -> HTTPS == HTTP over TLS
+// TLS gives: no snooping, No tampering, No impersonating
+// $9.00 per year
+// use SSLLabs.com to grade your website
+// Send sensitive cookies over HTTPS only
+
+// AST's
+// Abstract Syntax Tree
+// last resort!!!
+// examples: esprima, acorn 
+// browserify
+// nodes inside nodes
+// var parse = require('acorn').parse;

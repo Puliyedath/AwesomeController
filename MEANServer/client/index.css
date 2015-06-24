@@ -5,6 +5,13 @@
     align-self: center;
 }
 
+#chat {
+    border: 1px solid black;
+    height: 250px;
+    width: 400px;
+    overflow: scroll;
+}
+
 input {
     position:absolute;
     clip: rect(0,0,0,0);
